@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api1',
-    'rest_framework'
+    'rest_framework',
+    'api2'
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dapiex',
         'PORT': '5432',
-        'HOST': 'postgres-db-1',
+        'HOST': 'postgresql-db-1',
         'USER': 'postgres',
         'PASSWORD': 'root'
     }
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
