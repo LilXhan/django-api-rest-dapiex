@@ -1,10 +1,21 @@
 from rest_framework import serializers
 from .models import Task
 
+def start_with_c(value):
+    if value[0].lower() != 'c':
+        raise serializers.ValidationError('Starts with C')
+
+def containt_numbers(value):
+    if any(i.isdigit() for i in value):
+        raise serializers.ValidationError('Not contain numbers')
+
 class TaskSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(validators=[start_with_c, containt_numbers])
     class Meta:
         model = Task 
         fields = ('id', 'name', 'priority', 'created_at', 'finished_at', )
+
+# CORS -> Cross Orgin Resource Sharing
 
     # def validate_name(self, value):
         
@@ -32,13 +43,13 @@ class TaskSerializer(serializers.ModelSerializer):
         priority = data.get('priority')
         name = data.get('name')
 
-        if contain_number(name):
-            raise serializers.ValidationError('Name not contain numbers')
+        # if contain_number(name):
+        #     raise serializers.ValidationError('Name not contain numbers')
 
         if priority != None and (priority < 1 or priority > 3):
             raise serializers.ValidationError('Range 1 and 3')
 
         return data
 
-def contain_number(string):
-    return any(char.isdigit() for char in string)
+# def contain_number(string):
+#     return any(char.isdigit() for char in string)
